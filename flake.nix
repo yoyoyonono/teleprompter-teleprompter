@@ -1,32 +1,19 @@
 {
-  description = "Python dev shell with Anthropic library";
+  description = "Minimal Python";
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
-  };
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-        python = pkgs.python312;
-        pythonEnv = python.withPackages (ps: [
-          ps.anthropic
-        ]);
-      in
-      {
-        devShells.default = pkgs.mkShell {
-          name = "python-anthropic";
-
-          packages = [
-            pythonEnv
-          ];
-
-          shellHook = ''
-            echo "🐍 Python $(python --version) ready"
-            echo "📦 anthropic $(python -c 'import anthropic; print(anthropic.__version__)')"
-          '';
-        };
-      });
+  outputs = { self, nixpkgs }:
+    let
+      system = "x86_64-linux";
+      pkgs   = nixpkgs.legacyPackages.${system};
+    in {
+      devShells.${system}.default = pkgs.mkShellNoCC {
+        packages = [
+          pkgs.python314
+          pkgs.python314Packages.httpx
+          pkgs.python314Packages.openai
+        ];
+      };
+    };
 }
