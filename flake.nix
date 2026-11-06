@@ -9,10 +9,11 @@
       pkgs   = nixpkgs.legacyPackages.${system};
     in {
       devShells.${system}.default = pkgs.mkShellNoCC {
-        packages = [
-          pkgs.python314
-          pkgs.python314Packages.httpx
-          pkgs.python314Packages.openai
+        packages = with pkgs; [
+          python314
+          python314Packages.httpx
+          python314Packages.openai
+          espeak-ng
         ];
       };
     };

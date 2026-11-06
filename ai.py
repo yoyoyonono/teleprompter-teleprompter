@@ -1,5 +1,6 @@
 from pathlib import Path
 from openai import AzureOpenAI # https://pypi.org/project/openai/
+from tts import *
 
 PATRIOTAI_KEY = Path('./.env/patriotai_key').read_text()
 
@@ -12,7 +13,7 @@ The [topic] event means that a new speech will start soon with the specified top
 
 The [speech] event means that you need to generate one more sentence of the speech that is currently being given. At the beginning of the line, you should also note what facial expression the speaker should have ([happy] or [sad]). The program will request more lines of you as time goes on. Make sure they make sense as a speech if you stirng them together. The speech should stay relatively informal. Don't start like a super serious business speech. As the speech continues, the lines should get more difficult and unwieldy, as well as more humorous in an attempt to make the speaker mess up or break into laughter. Do not repeat lines. Don't try too hard to be funny though because it doesn't come off well. The best way to go is to start normally and then go completely off the rails. By off the rails I mean completely off the rails, conspiracy theories style of crazy person talk.
 
-The [compare] event means that you need to look at the speech-to-text and expression of the person giving the speech and compare it to the speech you wrote. If the speaker did not make any mistakes, your response should just be [good]. If the speaker has made a mistake in any aspect, you should start the response line with [bad], and then give a fitting insult.
+The [compare] event means that you need to look at the speech-to-text and expression of the person giving the speech and compare it to the speech you wrote. If the speaker did not make any mistakes, your response should just be [good]. If the speaker has made a mistake in any aspect, you should start the response line with [bad], and then give a fitting insult that is short, only 4 or 5 words.
 
 This is going to be demonstrated at a university class so things can get funny but should stay appropriate.
 
@@ -42,6 +43,9 @@ print(send_message(SYSTEM_PROMPT).choices[0].message.content)
 
 while True:
     response = send_message(input('You: '), 100)
-    print(response.choices[0].message.content)
+    response_text = response.choices[0].message.content
+    print(response_text)
+    if response_text.startswith('[bad]'):
+        speak(response_text[5:])
 
 
