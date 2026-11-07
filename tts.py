@@ -1,7 +1,7 @@
 import subprocess
 
-assert subprocess.run(['espeak', 'online']).returncode == 0
+assert subprocess.run(['espeak-ng', 'online']).returncode == 0
 
 def speak(sentence: str):
-    subprocess.run(['espeak', sentence])
+    subprocess.run(['espeak-ng', sentence])
 
