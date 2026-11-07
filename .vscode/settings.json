@@ -1,0 +1,16 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "ui-system/lib/velocity.jar",
+        "ui-system/lib/velocity-sources.jar",
+        "ui-system/lib/ogl/lwjgl.jar",
+        "ui-system/lib/ogl/lwjgl-glfw.jar",
+        "ui-system/lib/ogl/lwjgl-opengl.jar",
+        "ui-system/lib/ogl/lwjgl-opengl-sources.jar",
+        "ui-system/lib/ogl/lwjgl-sources.jar",
+        "ui-system/lib/ogl/lwjgl-stb.jar",
+        "ui-system/lib/ogl/lwjgl-stb-sources.jar",
+        "ui-system/lib/ogl/joml-1.10.5.jar",
+        "ui-system/lib/ogl/lwjgl-glfw-sources.jar"
+    ]
+}

@@ -1,0 +1,19 @@
+VELOCITY v0.7.0.3-dev CRASH LOG 2026-11-07T04:00:52.842201
+Active Velocity renderer CopperheadGL
+
+A fatal exception has been detected in this Velocity Application.
+Exception message: The provided scene could not be loaded.
+Exception Details:
+Exception in thread main com.rsc_games.velocity.InvalidSceneException: Unable to locate requested scene! (name: PlayerGameScene)
+	at com.rsc_games.velocity.Scene.loadScene0(Scene.java:169)
+	at com.rsc_games.velocity.Scene.INTERNAL_runSceneLoads(Scene.java:116)
+	at com.rsc_games.velocity.VelocityMain.gameLoop(VelocityMain.java:330)
+	at com.rsc_games.velocity.VelocityMain$EngineEventHandler.onTimerTick(VelocityMain.java:318)
+	at com.rsc_games.velocity.DrawTimer.tick(DrawTimer.java:51)
+	at com.rsc_games.velocity.VelocityMain.app_main(VelocityMain.java:217)
+	at Main.main(Main.java:34)
+
+
+End of stack trace.
+Please contact the application developer and provide them this file.
+If this is not an application issue, please head to https://github.com/RSC-Games/Velocity and file this error as a new issue report, or if one exists, add this to that issue.
