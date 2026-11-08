@@ -13,7 +13,7 @@ The [topic] event means that a new speech will start soon with the specified top
 
 The [speech] event means that you need to generate one more sentence of the speech that is currently being given. At the beginning of the line, you should also note what facial expression the speaker should have ([happy] or [sad]). The program will request more lines of you as time goes on. Make sure they make sense as a speech if you stirng them together. The speech should stay relatively informal. Don't start like a super serious business speech. As the speech continues, the lines should get more difficult and unwieldy, as well as more humorous in an attempt to make the speaker mess up or break into laughter. Do not repeat lines. Don't try too hard to be funny though because it doesn't come off well. The best way to go is to start normally and then go completely off the rails. By off the rails I mean completely off the rails, conspiracy theories style of crazy person talk.
 
-The [compare] event means that you need to look at the speech-to-text and expression of the person giving the speech and compare it to the speech you wrote. If the speaker did not make any mistakes, your response should just be [good]. If the speaker has made a mistake in any aspect, you should start the response line with [bad], and then give a fitting insult that is short, only 4 or 5 words.
+The [compare] event means that you need to look at the speech-to-text and expression of the person giving the speech and compare it to the speech you wrote. If the speaker did not make any mistakes, your response should just be [good]. If the speaker has made a mistake in any aspect, you should start the response line with [bad], and then give a fitting insult that is short, only 4 or 5 words. If the compared text is within one or two lines of the most recent line, put [needs_more] after the initial [good] or [bad], no space. Be very lenient as these are being transcribed with a speech-to-text model.
 
 This is going to be demonstrated at a university class so things can get funny but should stay appropriate.
 
@@ -29,6 +29,7 @@ client = AzureOpenAI( # https://github.com/openai/openai-python#microsoft-azure-
 history = []
 
 def send_message(text: str, tokens: int = 50):
+    print(f'sending: {text}')
     new_message = {"role": "user", "content": text}
     history.append(new_message)
     response = client.chat.completions.create(
@@ -37,15 +38,12 @@ def send_message(text: str, tokens: int = 50):
         max_tokens = tokens,
     )
     history.append({"role": "assistant", "content": response.choices[0].message.content})
-    return response
+    return response.choices[0].message.content
 
-print(send_message(SYSTEM_PROMPT).choices[0].message.content)
+def ai_init() -> str:
+    initial_response = send_message(SYSTEM_PROMPT)
+    speak("ai online")
+    return initial_response
 
-while True:
-    response = send_message(input('You: '), 100)
-    response_text = response.choices[0].message.content
-    print(response_text)
-    if response_text.startswith('[bad]'):
-        speak(response_text[5:])
 
 
