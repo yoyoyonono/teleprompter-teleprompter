@@ -4,3 +4,4 @@ models/
 __pycache__/
 velocity_crash_info.txt
 .vscode/
+realtimesst.log
