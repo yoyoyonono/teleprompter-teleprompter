@@ -1,5 +1,6 @@
 .env
 .direnv
+.venv/
 models/
 __pycache__/
 velocity_crash_info.txt
