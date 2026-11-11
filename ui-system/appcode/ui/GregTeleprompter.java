@@ -21,8 +21,8 @@ public class GregTeleprompter extends LitSprite {
 
     public GregTeleprompter() {
         super(new Transform(Vector2.zero, 0, Vector2.one.clone().mult(1.45f), -100), "greg", "./resources/intro/big_greg_fullbright.png");
-        teleprompter = new AudioClip("./resources/intro/teleprompter.wav");
-        vineBoom = new AudioClip("./resources/intro/vine-boom.wav");
+        teleprompter = new AudioClip("./resources/intro/teleprompter.wav", false);
+        vineBoom = new AudioClip("./resources/intro/vine-boom.wav", false, 1.5f);
         light = new SunLight(0);
         fadeWaitTimer = new Timer(4250, false);
     }

@@ -1,5 +1,6 @@
 package appcode.ui.title;
 
+import com.rsc_games.velocity.audio.AudioClip;
 import com.rsc_games.velocity.audio.MusicClip;
 import com.rsc_games.velocity.sprite.ui.AnchorPoint;
 import com.rsc_games.velocity.sprite.ui.UIImage;
@@ -13,7 +14,7 @@ public class GregTitle extends UIImage {
     // TODO: add better loop point support for music (for the new title track)
     public GregTitle(AnchorPoint anchor, Transform transform, String name, String imagename) {
         super(anchor, transform, name, imagename);
-        song = new MusicClip("./resources/title/tele-menu-new-reduced.wav", true);
+        song = new MusicClip("./resources/title/tele-menu-new-reduced.wav", true, 8f, 0.8f);
         this.transform.setZOrder(-10);
     }
 
@@ -33,6 +34,7 @@ public class GregTitle extends UIImage {
     @Override 
     protected void onTick() {
         ticks++;
+        song.tickRefillBuffers();
 
         this.transform.setScale(new Vector2(cyclicA(ticks), cyclicB(ticks)));
     }

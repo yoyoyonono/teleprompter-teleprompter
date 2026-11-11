@@ -20,6 +20,7 @@ public class CreditsButton extends UIButton {
     }
 
     // TODO: implement
+    // TODO: vlad wants credit for the bg picture
     @Override
     public void clicked() {
         this.select.play();

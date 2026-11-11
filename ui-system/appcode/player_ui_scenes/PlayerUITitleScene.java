@@ -40,9 +40,9 @@ public class PlayerUITitleScene extends Scene {
         sprites.add(new GregTitle(AnchorPoint.CENTER, new Transform(Vector2.zero, 0, Vector2.one, -100), 
                     "bg", "./resources/title/big_greg.png"));
 
-        AudioClip uiHover = new AudioClip("./resources/title/menu-hover.wav");
-        AudioClip uiSelectStart = new AudioClip("./resources/title/menu-select.wav");
-        AudioClip uiSelect = new AudioClip("./resources/title/menu-select-nonfinal.wav");
+        AudioClip uiHover = new AudioClip("./resources/title/menu-hover.wav", false);
+        AudioClip uiSelectStart = new AudioClip("./resources/title/menu-select.wav", false, 2f);
+        AudioClip uiSelect = new AudioClip("./resources/title/menu-select-nonfinal.wav", false);
 
         sprites.add(new PlayButton(AnchorPoint.LOWER_LEFT, new Transform(new Vector2(215, -360)), 
                     "./resources/title/play_btn.png", "./resources/title/play_btn_hover.png", uiSelectStart, uiHover));

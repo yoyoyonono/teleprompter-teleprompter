@@ -11,6 +11,9 @@
         "ui-system/lib/ogl/lwjgl-stb.jar",
         "ui-system/lib/ogl/lwjgl-stb-sources.jar",
         "ui-system/lib/ogl/joml-1.10.5.jar",
-        "ui-system/lib/ogl/lwjgl-glfw-sources.jar"
+        "ui-system/lib/ogl/lwjgl-glfw-sources.jar",
+        "ui-system/lib/ogl/lwjgl-unsafe.jar",
+        "ui-system/lib/ogl/lwjgl-jemalloc.jar",
+        "ui-system/lib/ogl/lwjgl-openal.jar"
     ]
 }

@@ -1,16 +1,20 @@
-VELOCITY v0.7.0.3-dev CRASH LOG 2026-11-07T04:00:52.842201
+VELOCITY v0.7.0.6-dev CRASH LOG 2026-11-10T15:45:45.684398100
 Active Velocity renderer CopperheadGL
 
 A fatal exception has been detected in this Velocity Application.
-Exception message: The provided scene could not be loaded.
+Exception message: A generic crash has occurred.
 Exception Details:
-Exception in thread main com.rsc_games.velocity.InvalidSceneException: Unable to locate requested scene! (name: PlayerGameScene)
-	at com.rsc_games.velocity.Scene.loadScene0(Scene.java:169)
-	at com.rsc_games.velocity.Scene.INTERNAL_runSceneLoads(Scene.java:116)
-	at com.rsc_games.velocity.VelocityMain.gameLoop(VelocityMain.java:330)
-	at com.rsc_games.velocity.VelocityMain$EngineEventHandler.onTimerTick(VelocityMain.java:318)
+Exception in thread main java.lang.RuntimeException: openal error: AL_INVALID_VALUE
+	at com.rsc_games.velocity.audio.AudioEngine.assertALError(AudioEngine.java:214)
+	at com.rsc_games.velocity.audio.MusicClip.refillBuffer(MusicClip.java:102)
+	at com.rsc_games.velocity.audio.MusicClip.tickRefillBuffers(MusicClip.java:120)
+	at appcode.ui.title.GregTitle.onTick(GregTitle.java:37)
+	at com.rsc_games.velocity.sprite.Sprite.tick(Sprite.java:130)
+	at com.rsc_games.velocity.Scene.tick(Scene.java:456)
+	at com.rsc_games.velocity.VelocityMain.gameLoop(VelocityMain.java:339)
+	at com.rsc_games.velocity.VelocityMain$EngineEventHandler.onTimerTick(VelocityMain.java:324)
 	at com.rsc_games.velocity.DrawTimer.tick(DrawTimer.java:51)
-	at com.rsc_games.velocity.VelocityMain.app_main(VelocityMain.java:217)
+	at com.rsc_games.velocity.VelocityMain.app_main(VelocityMain.java:220)
 	at Main.main(Main.java:34)
 
 
