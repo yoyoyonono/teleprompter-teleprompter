@@ -69,7 +69,9 @@
               "opencv-contrib-python==4.14.0.94" \
               "opencv-contrib-python-headless==4.14.0.94" \
               pyaudio \
-              "RealtimeSTT[faster-whisper,silero-vad]"
+              "RealtimeSTT[faster-whisper,silero-vad]" \
+              vosk \
+              sounddevice \
 
             # DeepFace pulls in the headless OpenCV build. Reinstall the GUI
             # build last so cv2.imshow() works.
