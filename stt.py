@@ -1,30 +1,31 @@
-from RealtimeSTT import AudioToTextRecorder # https://github.com/KoljaB/RealtimeSTT
-from tts import *
-import pyaudio
+from vosk import Model, KaldiRecognizer
+import sounddevice as sd
+import json
+from tts import speak
+
+MODEL_PATH = "vosk-model-small-en-us-0.15"
 
 class STTHandler:
     def __init__(self, text_callback):
-        pa = pyaudio.PyAudio()
-        for i in range(pa.get_device_count()):
-            info = pa.get_device_info_by_index(i)
-            if info['maxInputChannels'] > 0:
-                print(f"[{i}] {info['name']}")
-        self.recorder = AudioToTextRecorder()
+        self.model = Model(MODEL_PATH)
+        self.rec = KaldiRecognizer(self.model, 16000)
         self.text_callback = text_callback
 
     def get_text(self):
-        self.recorder.text(self.__on_text)
+        with sd.RawInputStream(samplerate=16000, blocksize=8000, dtype='int16', channels=1) as stream:
+            while True:
+                data, _ = stream.read(8000)
+                if self.rec.AcceptWaveform(bytes(data)):
+                    result = json.loads(self.rec.Result())
+                    text = result.get("text", "").strip()
+                    if text:
+                        print(f'Transcribed: {text}')
+                        self.text_callback(text)
+                        return
 
-    def __on_text(self, text):
-        print(f'Transcribed: {text}')
-        self.text_callback(text)                
 
-
-def print_text(text):
-    print(text)
-
-def stt_init(callback) -> AudioToTextRecorder:
-    new_handler = STTHandler(callback)
+def stt_init(callback) -> STTHandler:
+    handler = STTHandler(callback)
     speak('STT online')
-    return new_handler
+    return handler
 
